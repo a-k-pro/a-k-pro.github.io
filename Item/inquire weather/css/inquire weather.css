@@ -1,0 +1,40 @@
+.container{
+	width: 100%;
+	height: auto;
+}
+p{
+	user-select: none;
+}
+h3{
+	text-align: center;
+}
+.cont{
+	overflow: hidden;
+}
+.todayweather{
+	width: 20%;
+	float: left;
+}
+.tqyb{
+	width: 80%;
+	float: left;
+	}
+.tqyb>p{
+	width: 25%;
+	float: left;
+}
+.tqyb>div>div{
+	float: left;
+	width: 25%;
+}
+#main{
+	margin: 0 auto;
+}
+#weather-v2-plugin-simple{
+	width: 400px;
+}
+#he-plugin-standard{
+	width: 200px;
+	height: 200px;
+	background: aqua;
+}

@@ -1,0 +1,45 @@
+@font-face {
+	font-family:'mFont1';
+	src: url('../font/zhanku.ttf');
+}
+.mFont1{
+	font-family: mFont1;
+	font-size: 30px;
+	color: #000000;
+	}
+.cont{
+	height: 600px;
+	background: #0069D9;
+}
+.bkdc1{
+	background: paleturquoise;
+}
+.bkdc2{
+	background: palevioletred;
+}
+.bkdc3{
+	background: red;
+}
+.bkdc4{
+	background: #000000;
+}
+.bgc9{
+	background: aqua;}
+.bgcf{
+	background: #fff;
+}
+.colorf{
+	color: #333;
+}
+.h50{
+	height: 50px;
+}
+.h100{
+	height: 100px;
+}
+.h150{
+	height: 150px;
+}
+.h200{
+	height: 200px;
+}

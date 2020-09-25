@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo-Calendar.css" />
+	</head>
+	<body>
+		<div class="container">
+			<p class="title">One Day One Note</p>
+			<div class="toptop">
+				<input type="text" name="" id="ipty" value="" />
+				<p class="year">年 ▼</p>
+				<div class="byear"></div>
+				<input type="text" name="" id="iptm" value="" />
+				<p class="month">月 ▼</p>
+				<div class="bmonth"></div>
+				<input type="text" name="" id="iptd" value="" />
+				<p class="day">日 ▼</p>
+				<div class="bday"></div>
+			</div>
+			<button type="button" id="tzrl">跳转日历</button>
+			<button type="button" id="hdjt">回到今天</button>
+			<ul class="week">
+				<li>周日</li>
+				<li>周一</li>
+				<li>周二</li>
+				<li>周三</li>
+				<li>周四</li>
+				<li>周五</li>
+				<li>周六</li>
+			</ul>
+			<div class="days"></div>
+			<form action="" method="">
+				<textarea rows="" cols="" id="edit">请输入内容</textarea>
+				<button type="button" class="tjan">提交</button>
+				<button type="button" class="dqan">读取</button>
+				<button type="button" class="qcan">清除输入框</button>
+			</form>
+			<button type="reset" class="clall">清除全部本地记录</button>
+			<div class="tsnr">
+			</div>
+		</div>
+	</body>
+	<script src="../../js/jq3-4-1.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			$(".qcan").click(function() {
+				$("#edit").val("");
+			})
+
+			getLos();
+			//声明读取函数
+			function getLos() {
+				$(".tsnr").empty();
+				for (var i = 0; i < localStorage.length; i++) {
+					var key = localStorage.key(i);
+					var $div = $("<div>" + key + ":" + localStorage[key] + "</div>");
+					$(".tsnr").append($div);
+				}
+			}
+			//点击读取
+			$(".dqan").click(function() {
+				getLos();
+
+			})
+			//点击清除全部本地记录
+			$(".clall").click(function() {
+				localStorage.clear();
+			})
+			//点击提交
+			$(".tjan").click(function() {
+				var pdm = $("#iptm").val();
+				if (pdm < 10) {
+					pdm = "0" + pdm;
+				}
+				var pdd = $("#iptd").val();
+				if (pdd < 10) {
+					pdd = "0" + pdd;
+				}
+				var Notei = $("#ipty").val() + pdm + pdd;
+				localStorage.setItem(Notei, $("#edit").val());
+			})
+			//页面加载生成日历&文本框填充
+			var now = new Date();
+			var ipty = now.getFullYear();
+			var iptm = now.getMonth() + 1;
+			var m = now.getDate();
+			$("#ipty").val(ipty);
+			$("#iptm").val(iptm);
+			$("#iptd").val(m);
+			var x = new Date(ipty, iptm, 0);
+			var y = new Date(ipty, iptm - 1, 1);
+			var xd = x.getDate();
+			var yd = y.getDay();
+			for (var i = 0; i < yd; i++) {
+				var $div = $("<div class='kongbai'></div>");
+				$(".days").append($div);
+			}
+			for (var i = 1; i < xd + 1; i++) {
+				var $div = $("<div>" + i + "</div>");
+				$(".days").append($div);
+				$(".days>div").eq(m + yd - 1).addClass("dayact");
+				$div.click(function() {
+					$(this).toggleClass("dayact").siblings().removeClass("dayact");
+					$("#iptd").val($(this).text());
+				})
+			}
+			getNote();
+			//声明记录高亮函数
+			function getNote() {
+				for (var i = 0; i < localStorage.length; i++) {
+					var pdy = localStorage.key(i).slice(0, 4);
+					var pdm = localStorage.key(i).slice(4, 6);
+					pdm = Number(pdm);
+					var xxx = $("#ipty").val();
+					var yyy = $("#iptm").val()
+					if (pdy == xxx && pdm == yyy) {
+						var indexxx = Number(localStorage.key(i).slice(6, 8));
+						var ipty = $("#ipty").val();
+						var iptm = $("#iptm").val();
+						var y = new Date(ipty, iptm - 1, 1);
+						var yd = y.getDay();
+						$(".days>div").eq(indexxx + yd - 1).addClass("dayact2");
+					}
+				}
+			}
+			//生成年
+			for (var i = 1900; i < 2100; i++) {
+				var $div = $("<div>" + i + "</div>");
+				$(".byear").append($div);
+				//赋值年
+				$div.click(function() {
+					$("#ipty").val($(this).text());
+					$(".byear").slideUp();
+					getRi();
+					$("#iptm").val("");
+					$("#iptd").val("");
+				})
+			}
+			//点击年选择菜单下滑
+			$(".year").click(function() {
+				event.stopPropagation();
+				$(".byear").slideToggle();
+				$(".bmonth").slideUp();
+				$(".bday").slideUp();
+			})
+			for (var i = 1; i < 13; i++) {
+				var $div = $("<div>" + i + "</div>");
+				$(".bmonth").append($div);
+				//赋值月
+				$div.click(function() {
+					$("#iptm").val($(this).text());
+					$(".bmonth").slideUp();
+					getRi();
+					$("#iptd").val("");
+					$("#tzrl").click();
+					getNote();
+				})
+			}
+			//点击月选择菜单下滑
+			$(".month").click(function() {
+				event.stopPropagation();
+				$(".bmonth").slideToggle();
+				$(".byear").slideUp();
+				$(".bday").slideUp();
+
+			})
+			//点击日选择菜单下滑
+			$(".day").click(function() {
+				event.stopPropagation();
+				getRi();
+				$(".bday").slideToggle();
+				$(".bmonth").slideUp();
+				$(".byear").slideUp();
+
+			})
+			//定义生成日函数
+			function getRi() {
+				$(".bday").empty();
+				var a = $("#ipty").val();
+				var b = $("#iptm").val();
+				var c = new Date(a, b, 0);
+				var d = c.getDate();
+				for (var i = 1; i < d + 1; i++) {
+					var $div = $("<div>" + i + "</div>");
+					$(".bday").append($div);
+					$div.click(function() {
+						$("#iptd").val($(this).text());
+						$(".bday").slideUp();
+						$("#tzrl").click();
+						getNote();
+					})
+
+				}
+			}
+			//点击跳转日历
+			$("#tzrl").click(function() {
+				$(".days").empty();
+				var ipty = $("#ipty").val();
+				var iptm = $("#iptm").val();
+				var iptd = $("#iptd").val();
+				$(".ayear>span").text(ipty);
+				$(".amonth>span").text(iptm);
+				var x = new Date(ipty, iptm, 0);
+				var y = new Date(ipty, iptm - 1, 1);
+				var xd = x.getDate();
+				var yd = y.getDay();
+				for (var i = 0; i < yd; i++) {
+					var $div = $("<div class='kongbai'></div>");
+					$(".days").append($div);
+				}
+				for (var i = 1; i < xd + 1; i++) {
+					var $div = $("<div>" + i + "</div>");
+					$(".days").append($div);
+					iptd = Number(iptd);
+					yd = Number(yd);
+					$(".days>div").eq(iptd + yd - 1).addClass("dayact");
+					$div.click(function() {
+						$(this).toggleClass("dayact").siblings().removeClass("dayact");
+						$("#iptd").val($(this).text());
+					})
+				}
+				getNote();
+			})
+			//点击回到今天
+			$("#hdjt").click(function() {
+				$(".days").empty();
+				var now = new Date();
+				var ipty = now.getFullYear();
+				var iptm = now.getMonth() + 1;
+				var m = now.getDate();
+				$("#ipty").val(ipty);
+				$("#iptm").val(iptm);
+				$("#iptd").val(m);
+				var x = new Date(ipty, iptm, 0);
+				var y = new Date(ipty, iptm - 1, 1);
+				var xd = x.getDate();
+				var yd = y.getDay();
+				for (var i = 0; i < yd; i++) {
+					var $div = $("<div class='kongbai'></div>");
+					$(".days").append($div);
+				}
+				for (var i = 1; i < xd + 1; i++) {
+					var $div = $("<div>" + i + "</div>");
+					$(".days").append($div);
+					$(".days>div").eq(m + yd - 1).addClass("dayact");
+					$div.click(function() {
+						$(this).toggleClass("dayact").siblings().removeClass("dayact");
+						$("#iptd").val($(this).text());
+					})
+				}
+				getNote();
+			})
+			$(document).click(function(){
+				$(".byear").slideUp();
+				$(".bmonth").slideUp();
+				$(".bday").slideUp();
+			})
+		})
+	</script>
+</html>

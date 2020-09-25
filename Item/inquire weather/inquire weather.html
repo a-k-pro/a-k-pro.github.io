@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/inquire%20weather.css"/>
+	</head>
+	<body>
+		<div class="container">
+			<h3>天气预报</h3>
+			<input type="text" name="" id="address" value="" placeholder="请输入地址"/>
+			<button type="button" id="cxbtn">查询</button>
+			<div class="cont">
+				<div class="todayweather">
+					<p>实时天气</p>
+					<p>数据发布的时间:<span id="sjtime"></span></p>
+					<p>天气:<span id="wtr"></span></p>
+					<p>实时气温:<span id="sswd"></span>℃</p>
+					<p>风向：<span id="fx"></span></p>
+					<p>风力:<span id="fl"></span>级</p>
+					<p>空气湿度:<span id="kqsd"></span></p>
+				</div>
+				<div class="tqyb">
+					<p>今天</p>
+					<p>明天</p>
+					<p>后天</p>
+					<p>大后天</p>
+					<div>
+						
+					</div>
+				</div>
+			</div>
+			<div id="main" style="width: 1200px;height:400px;"></div>
+		</div>
+		<div id="weather-v2-plugin-simple"></div>
+		<script>
+		WIDGET = {
+		  CONFIG: {
+		    "modules": "01234",
+		    "background": 1,
+		    "tmpColor": "FFFFFF",
+		    "tmpSize": 16,
+		    "cityColor": "FFFFFF",
+		    "citySize": 16,
+		    "aqiSize": 16,
+		    "weatherIconSize": 24,
+		    "alertIconSize": 18,
+		    "padding": "10px 10px 10px 10px",
+		    "shadow": "1",
+		    "language": "auto",
+		    "borderRadius": 5,
+		    "fixed": "false",
+		    "vertical": "middle",
+		    "horizontal": "center",
+		    "key": "JY2sHAb5tC"
+		  }
+		}
+		</script>
+		<script src="https://apip.weatherdt.com/simple/static/js/weather-simple-common.js?v=2.0"></script>
+		<!-- <iframe width="100%" height="300" src="https://c.runoob.com/iframe/3896" allowfullscreen="allowfullscreen" frameborder="0"></iframe> -->
+		<iframe allowtransparency="true" frameborder="0" width="877" height="100" scrolling="no" src="//tianqi.2345.com/plugin/widget/index.htm?s=2&z=1&t=1&v=0&d=5&bd=1&k=000000&f=&ltf=009944&htf=cc0000&q=1&e=1&a=1&c=54511&w=877&h=100&align=center"></iframe>
+	</body>
+	<script src="../../js/jq3-4-1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../../incubator-echarts-4.8.0/dist/echarts.min.js"></script>
+	<script src="js/inquire%20weather.js" type="text/javascript" charset="utf-8"></script>
+</html>

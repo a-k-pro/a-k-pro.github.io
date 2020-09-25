@@ -1,0 +1,175 @@
+.container{
+	width: 552px;
+	height: auto;
+	margin: 0 auto;
+}
+.week{
+	margin-top: 20px;
+	overflow: hidden;
+}
+.week>li{
+	float: left;
+	width: 50px;
+	height: 30px;
+	font-size: 24px;
+	line-height: 30px;
+	/* border: 1px solid #333; */
+	margin: 1px;
+}
+.toptop{
+	position: relative;
+}
+.toptop::after{
+	content: "";
+	clear: both;
+	display: block;
+}
+.toptop>input{
+	float: left;
+}
+.toptop>p{
+	float: left;
+	cursor: pointer;
+}
+.toptop>div{
+	float: left;
+	width: 100px;
+}
+.byear{
+	display: none;
+	width: 135px !important;
+	height: auto;
+	max-height: 200px;
+	overflow-y: auto;
+	/* border: 2px solid #333; */
+	position: absolute;
+	top: 23px;
+}
+.byear>div{
+	 border: 1px solid #333; 
+	background: palegoldenrod;
+	cursor: pointer;
+}
+.byear>div:hover{
+	background: gold;
+}
+.bmonth{
+	display: none;
+	width: 135px !important;
+	height: auto;
+	max-height: 200px;
+	overflow-y: auto;
+	/* border: 1px solid #333; */
+	position: absolute;
+	top: 23px;
+	left: 174px;
+}
+#tzrl,#hdjt{
+	margin-top: 10px;
+	width: 200px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 24px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	color: darkblue;
+}
+#tzrl:active{
+	color: red;
+}
+#hdjt:active{
+	color: red;
+}
+.bmonth>div{
+	border: 1px solid #333; 
+	cursor: pointer;
+	background: palegoldenrod;
+}
+.title{
+	text-align: center;
+	font-size: 50px;
+	margin-bottom: 20px;
+}
+.bmonth>div:hover{
+	color: #fff;
+	background: gold;
+}
+.bday{
+	display: none;
+	width: 135px !important;
+	height: auto;
+	max-height: 200px;
+	overflow-y: auto;
+	/* border: 2px solid #333; */
+	position: absolute;
+	top: 23px;
+	left: 348px;
+}
+.bday>div{
+	border: 1px solid #333;
+	background: palegoldenrod;
+	cursor: pointer;
+}
+.bday>div:hover{
+	background: gold;
+}
+.days{
+	width: 400px;
+	height: auto;
+	min-height: 100px;
+	overflow: hidden;
+}
+.ayear{
+	overflow: hidden;
+}
+.amonth{
+	overflow: hidden;
+}
+.ayear>p{
+	float: left;
+}
+.ayear>span{
+	float: left;
+}
+.amonth>p{
+	float: left;
+}
+.amonth>span{
+	float: left;
+}
+.days>div{
+	float: left;
+	width: 50px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 3px;
+	/* border: 1px solid #333333; */
+	margin: 1px;
+	cursor: pointer;
+}
+.days>div:hover{
+	background: #AAAAAA;
+}
+.days>div:active{
+	background: #000000;
+	color: #fff;
+}
+.dayact{
+	color: #005CBF;
+	background: pink !important;
+}
+.dayact2{
+	color: #df8155;
+	background: #aaffff;
+}
+.kongbai{
+	/* border: 1px solid transparent !important; */
+}
+#edit{
+	display: block;
+	width: 400px;
+	height: auto;
+	min-height: 100px;
+}
